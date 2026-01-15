@@ -73,7 +73,7 @@ function plusMinus() {
   updateDisplay();
 }
 
-function compute() {
+function compute(clearing=false) {
   let computation;
   const prev = parseFloat(previousOperand);
   const current = parseFloat(currentOperand);
@@ -102,7 +102,9 @@ function compute() {
   operation = undefined;
   previousOperand = '';
   // Mark that we've just computed so the next number key clears the calculator
-  justComputed = true;
+  if (clearing){
+    justComputed = true;
+  }
   updateDisplay();
 }
 
@@ -138,7 +140,7 @@ operationButtons.forEach(button => {
 });
 
 equalsButton.addEventListener('click', () => {
-  compute();
+  compute(clearing=true);
 });
 
 allClearButton.addEventListener('click', () => {
@@ -163,7 +165,7 @@ window.addEventListener('keydown', (e) => {
     chooseOperation(map[e.key] || e.key);
   } else if (e.key === 'Enter' || e.key === '=') {
     e.preventDefault();
-    compute();
+    compute(clearing=true);
   } else if (e.key === 'Backspace') {
     deleteDigit();
   } else if (e.key === 'Escape') {
