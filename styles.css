@@ -1,0 +1,104 @@
+:root{
+  --bg: #f3f4f6;
+  --calculator: #1e293b;
+  --button: #e2e8f0;
+  --accent: #f97316;
+  --accent-dark: #ea580c;
+  --text: #0f172a;
+  --muted: #94a3b8;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", Arial;
+  background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+}
+
+.page{width:100%;max-width:420px}
+
+.calculator{
+  background: linear-gradient(180deg, #0f172a, #0b1220);
+  border-radius:16px;
+  padding:16px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.45);
+  color: #fff;
+}
+
+.display{
+  background: rgba(255,255,255,0.04);
+  padding:18px;
+  border-radius:12px;
+  text-align:right;
+  margin-bottom:12px;
+  min-height:72px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-end;
+  word-wrap:break-word;
+}
+
+.previous-operand{
+  color: rgba(255,255,255,0.6);
+  font-size:14px;
+  min-height:18px;
+}
+
+.current-operand{
+  font-size:32px;
+  font-weight:600;
+  line-height:1;
+  min-height:34px;
+}
+
+.buttons-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:10px;
+}
+
+button{
+  font-size:18px;
+  padding:14px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  background:var(--button);
+  color:var(--text);
+  box-shadow: 0 4px 8px rgba(2,6,23,0.2);
+  transition: transform .06s ease, box-shadow .06s ease;
+}
+
+button:active{ transform: translateY(1px); box-shadow: 0 2px 4px rgba(2,6,23,0.18); }
+
+.span-two{ grid-column: span 2; }
+
+button[data-operation]{
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  color: #fff;
+}
+
+.equals{
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(249,115,22,0.35);
+  grid-column: span 1;
+}
+
+button[data-all-clear]{
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+@media (max-width:420px){
+  .calculator{ padding:12px }
+  button{ padding:12px; font-size:16px; }
+  .current-operand{ font-size:28px }
+}

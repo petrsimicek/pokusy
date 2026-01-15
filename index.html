@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <h1 class="sr-only">Simple Calculator</h1>
+
+    <div class="calculator" role="application" aria-label="Calculator">
+      <div class="display">
+        <div class="previous-operand" data-previous-operand></div>
+        <div class="current-operand" data-current-operand>0</div>
+      </div>
+
+      <div class="buttons-grid">
+        <button class="span-two" data-all-clear>AC</button>
+        <button data-delete>DEL</button>
+        <button data-operation>÷</button>
+
+        <button data-number>7</button>
+        <button data-number>8</button>
+        <button data-number>9</button>
+        <button data-operation>×</button>
+
+        <button data-number>4</button>
+        <button data-number>5</button>
+        <button data-number>6</button>
+        <button data-operation>-</button>
+
+        <button data-number>1</button>
+        <button data-number>2</button>
+        <button data-number>3</button>
+        <button data-operation>+</button>
+
+        <button data-plusminus>±</button>
+        <button data-number>0</button>
+        <button data-decimal>.</button>
+        <button data-equals class="equals">=</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
