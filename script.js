@@ -13,11 +13,14 @@ const currentOperandText = document.querySelector('[data-current-operand]');
 let currentOperand = '';
 let previousOperand = '';
 let operation = undefined;
+// Flag to detect that a computation just finished (user pressed '=')
+let justComputed = false;
 
 function clearAll() {
   currentOperand = '';
   previousOperand = '';
   operation = undefined;
+  justComputed = false;
   updateDisplay();
 }
 
@@ -28,6 +31,12 @@ function deleteDigit() {
 }
 
 function appendNumber(number) {
+  // If a computation just finished, any number stroke should clear and start fresh
+  if (justComputed) {
+    clearAll();
+    justComputed = false;
+  }
+
   if (number === '.' && currentOperand.includes('.')) return;
   // avoid multiple leading zeros
   if (number === '0' && currentOperand === '0') return;
@@ -37,6 +46,11 @@ function appendNumber(number) {
 }
 
 function chooseOperation(op) {
+  // If user had just computed and then chooses an operation, allow chaining with the result
+  if (justComputed) {
+    justComputed = false;
+  }
+
   if (currentOperand === '' && previousOperand === '') return;
   if (currentOperand === '' && previousOperand !== '') {
     operation = op;
@@ -87,6 +101,8 @@ function compute() {
   currentOperand = computation.toString();
   operation = undefined;
   previousOperand = '';
+  // Mark that we've just computed so the next number key clears the calculator
+  justComputed = true;
   updateDisplay();
 }
 
